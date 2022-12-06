@@ -13,29 +13,28 @@ class Tree<T>
     }
 
     
-    public void GetAddSearchNullNode(int number, string name, int i) {
+    public void GetAddSearchNullNode() {
         int traverseStep = this.length;
         TreeNode<string> ptr = this.GetSearchNullTreeNode(traverseStep);
-        ptr.SetValue(name);
         TreeNode<string> node = new TreeNode<string>(null);
-        
-        string name1 = Console.ReadLine();
-        int number1 = int.Parse(Console.ReadLine());
-
-        if(i == 1) {
-            ptr.SetChild(node);
-            ptr = ptr.Child();
-        }
-        else {
-            ptr.SetNext(node);
-            ptr = ptr.Next();
-        }
-        this.length++;
-        if(number == i) {
-            for(int x = 1; x <= number1; x++) {
-                
-                GetAddSearchNullNode(number1, name1, x);
+        node.SetValue(null);
+        string name = Console.ReadLine();
+        int number = int.Parse(Console.ReadLine());
+        ptr.SetValue(name);
+        for(int i = 1; i <= number; i++) {
+            if(i == 1) {
+                ptr.SetChild(node);
+                ptr = ptr.Child();
             }
+            else {
+                ptr.SetNext(node);
+                ptr = ptr.Next();
+            }
+            this.length++;
+        }
+        TreeNode<string> searchNull = this.GetSearchNullTreeNode(traverseStep);
+        if(searchNull.GetValue() == null) {
+            GetAddSearchNullNode();
         }
 
     }

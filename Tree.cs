@@ -19,9 +19,9 @@ class Tree<T>
         string name = Console.ReadLine();
         int number = int.Parse(Console.ReadLine());
         ptr.SetValue(name);
-        TreeNode<string> node = new TreeNode<string>(null);
-        node.SetValue(null);
         for(int i = 1; i <= number; i++) {
+            TreeNode<string> node = new TreeNode<string>(null);
+            node.SetValue(null);
             if(i == 1) {
                 ptr.SetChild(node);
                 ptr = ptr.Child();
@@ -127,9 +127,10 @@ class Tree<T>
         return ptr;
     }
     public TreeNode<string> SearchNullNode(TreeNode<string> currentTreeNode, ref int traverseStep) {
-        
+        traverseStep--;
         TreeNode<string> ptr = currentTreeNode;
         if(ptr.GetValue() == null) {
+            traverseStep = 0;
             return ptr;
         }
         if(traverseStep > 0 && currentTreeNode.Child() != null)

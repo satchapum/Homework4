@@ -15,12 +15,12 @@ class Tree<T>
     
     public void GetAddSearchNullNode() {
         int traverseStep = this.length;
-        TreeNode<string> ptr = this.GetSearchNullTreeNode(traverseStep);
-        TreeNode<string> node = new TreeNode<string>(null);
-        node.SetValue(null);
+        TreeNode<string> ptr = this.SearchNullNode(this.root ,ref traverseStep);
         string name = Console.ReadLine();
         int number = int.Parse(Console.ReadLine());
         ptr.SetValue(name);
+        TreeNode<string> node = new TreeNode<string>(null);
+        node.SetValue(null);
         for(int i = 1; i <= number; i++) {
             if(i == 1) {
                 ptr.SetChild(node);
@@ -32,7 +32,8 @@ class Tree<T>
             }
             this.length++;
         }
-        TreeNode<string> searchNull = this.GetSearchNullTreeNode(traverseStep);
+        traverseStep = this.length;
+        TreeNode<string> searchNull = this.SearchNullNode(this.root ,ref traverseStep);
         if(searchNull.GetValue() == null) {
             GetAddSearchNullNode();
         }
@@ -78,12 +79,6 @@ class Tree<T>
     {
         return this.Search(this.root, index, ref stackinput);
     }
-    private TreeNode<string> GetSearchNullTreeNode(int index)
-    {
-        int traverseStep = index;
-        return this.SearchNullNode(this.root, ref traverseStep);
-    }
-
     private TreeNode<string> Traverse(TreeNode<string> currentTreeNode, ref int traverseStep)
     {
         TreeNode<string> ptr = currentTreeNode;
